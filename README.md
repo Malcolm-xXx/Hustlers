@@ -3,9 +3,10 @@
 **Hustlers** is a next-generation digital marketplace built with Flutter, designed to bridge the gap between local market vendors and urban consumers. Unlike standard food delivery apps, Hustlers specializes in the sourcing of **raw cooking ingredients** directly from verified local markets, farms, and small-scale suppliers.
 
 <p align="center">
-  <img src="assets/images/onboarding-img-01.png" width="30%" />
-  <img src="assets/images/onboarding-img-02.png" width="30%" />
-  <img src="assets/images/onboarding-img-03.png" width="30%" />
+  <img src="assets/images/onboarding-img-01.png" width="22%" />
+  <img src="assets/images/onboarding-img-02.png" width="22%" />
+  <img src="assets/images/onboarding-img-03.png" width="22%" />
+  <img src="assets/images/cooking-pref.png" width="22%" />
 </p>
 
 ## 🚀 The Problem
