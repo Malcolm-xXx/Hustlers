@@ -20,7 +20,7 @@ Many households struggle with the time-consuming stress of visiting physical mar
 - **State Management:** [Riverpod](https://riverpod.dev/)
 - **Navigation:** [Go Router](https://pub.dev/packages/go_router)
 - **Networking:** [Dio](https://pub.dev/packages/dio)
-- **Backend:** [Firebase](https://firebase.google.com/)
+- **Backend:** [Firebase](https://firebase.google.com/) & [Express.js](https://expressjs.com/)
 - **Animations:** [Flutter Animate](https://pub.dev/packages/flutter_animate)
 - **UI Utilities:** ScreenUtil for responsiveness, SVG for icons.
 
