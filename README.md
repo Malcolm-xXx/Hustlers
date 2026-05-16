@@ -1,33 +1,58 @@
 # Hustlers 🥬🍅🥩
 
-**Hustlers** is a digital marketplace designed to bridge the gap between local market vendors and urban consumers. Unlike standard food delivery apps focused on ready-made meals, Hustlers specializes in the buying and selling of **raw cooking ingredients**—sourced directly from verified local markets, farms, and small-scale suppliers.
+**Hustlers** is a next-generation digital marketplace built with Flutter, designed to bridge the gap between local market vendors and urban consumers. Unlike standard food delivery apps, Hustlers specializes in the sourcing of **raw cooking ingredients** directly from verified local markets, farms, and small-scale suppliers.
+
+![Onboarding 1](assets/images/onboarding-img-01.png)
 
 ## 🚀 The Problem
-Many households struggle with the time-consuming stress of visiting physical markets and the uncertainty of ingredient quality. Meanwhile, local vendors lack the tools to reach customers beyond their physical stalls.
+Many households struggle with the time-consuming stress of visiting physical markets and the uncertainty of ingredient quality. Meanwhile, local vendors lack the tools to reach customers beyond their physical stalls. Hustlers provides a seamless, trust-based platform to solve both ends of the spectrum.
 
 ## ✨ Key Features
-- **Verified Seller System:** Trust-based onboarding with identity and location verification badges.
-- **Dynamic Marketplace:** Browse ingredients by category (Grains, Vegetables, Meat, etc.) with real-time price and quantity updates.
-- **Seller Dashboard:** Comprehensive tools for vendors to manage listings, track earnings, and fulfill orders.
-- **Secure Transactions:** Integrated payments via Paystack/Flutterwave with order tracking and dispute resolution.
+- **Verified Seller System:** Trust-based onboarding with identity and location verification.
+- **Dynamic Marketplace:** Browse ingredients by category (Grains, Vegetables, Meat, etc.) with real-time updates.
+- **Order Management:** Real-time tracking of orders from the market to your doorstep.
+- **Messaging:** In-app communication between buyers and sellers for specialized requests.
+- **Secure Payments:** Integrated payment gateways for safe and easy transactions.
+- **Customized Experience:** Preference-based onboarding to tailor the marketplace to your cooking style.
 
 ## 🛠 Technology Stack
-- **Frontend:** [e.g., Next.js / React Native]
-- **Backend:** [e.g., Node.js / Firebase]
-- **Database:** [e.g., PostgreSQL / Firestore]
-- **Payments:** [e.g., Paystack API]
-- **Maps:** Google Maps API for seller location verification.
+- **Framework:** [Flutter](https://flutter.dev/) (Cross-platform Android & iOS)
+- **State Management:** [Riverpod](https://riverpod.dev/)
+- **Navigation:** [Go Router](https://pub.dev/packages/go_router)
+- **Networking:** [Dio](https://pub.dev/packages/dio)
+- **Backend:** [Firebase](https://firebase.google.com/)
+- **Animations:** [Flutter Animate](https://pub.dev/packages/flutter_animate)
+- **UI Utilities:** ScreenUtil for responsiveness, SVG for icons.
 
-## 📈 Success Metrics
-The platform is designed to track:
-- Active buyer and seller growth.
-- Order completion rates and average delivery times.
-- Seller earnings growth.
+## 📁 Project Structure
+The project follows a feature-first clean architecture:
+- `lib/core`: Shared services, themes, and utility functions.
+- `lib/features`: Distinct modules (Auth, Marketplace, Orders, Messaging, etc.).
+- `lib/app.dart`: Main application configuration and routing.
 
-## 🛣 Future Roadmap
-- In-app buyer-seller chat.
-- AI-based price suggestions.
-- Subscription-based grocery plans.
+## 🏃 Getting Started
+### Prerequisites
+- Flutter SDK (latest stable version)
+- Android Studio / VS Code
+- A running emulator or physical device
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Malcolm-xXx/Hustlers.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Hustlers
+   ```
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+4. Run the app:
+   ```bash
+   flutter run
+   ```
 
 ---
-*Created as a solution to empower everyday hustlers and modernize local food commerce.*.
+*Created with ❤️ to empower everyday hustlers and modernize local food commerce.*
