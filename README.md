@@ -5,8 +5,6 @@
 <p align="center">
   <img src="assets/images/onboarding-img-01.png" width="22%" />
   <img src="assets/images/onboarding-img-02.png" width="22%" />
-  <img src="assets/images/onboarding-img-03.png" width="22%" />
-  <img src="assets/images/cooking-pref.png" width="22%" />
 </p>
 
 ## 🚀 The Problem
