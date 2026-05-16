@@ -1,0 +1,30 @@
+$kind: http-request
+name: Product tags request
+url: "{{base_url}}/api/v1/catalog/products/{{product_id}}/tags/"
+method: GET
+description: |-
+  Fetch tags for a product.
+
+  Auth: IsAuthenticated + Seller role required (must own the product).
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "id": "uuid",
+      "tag": {
+        "id": "uuid",
+        "name": "string",
+        "slug": "string",
+        "tag_scope": "product"
+      }
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

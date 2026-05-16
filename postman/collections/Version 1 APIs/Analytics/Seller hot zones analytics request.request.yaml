@@ -1,0 +1,36 @@
+$kind: http-request
+name: Seller hot zones analytics request
+url: "{{base_url}}/api/v1/analytics/seller/hot-zones/"
+method: GET
+description: |-
+  Fetch seller hot zone analytics.
+
+  Auth: IsAuthenticated + Seller role required.
+   Query params: range (today | week | month), limit (default: 5).
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "location": {
+        "id": "uuid",
+        "name": "string",
+        "kind": "market",
+        "market_type": null,
+        "address_text": "string",
+        "distance_km": null,
+        "rating": "4.00",
+        "seller_count": 10
+      },
+      "orders_count": 15,
+      "change_pct": "10.00"
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

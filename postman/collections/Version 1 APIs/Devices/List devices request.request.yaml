@@ -1,0 +1,26 @@
+$kind: http-request
+name: List devices
+url: "{{base_url}}/api/v1/devices/"
+method: GET
+description: |-
+  List registered devices.
+
+  Auth: IsAuthenticated.
+
+  Lists all active device registrations for the current user.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "devices": [
+      {
+        "device_id": "dev-abc123",
+        "platform": "fcm"
+      }
+    ]
+  }
+  ```
+
+auth:
+  type: bearer

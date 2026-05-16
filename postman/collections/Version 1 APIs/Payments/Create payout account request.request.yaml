@@ -1,0 +1,36 @@
+$kind: http-request
+name: Create payout account request
+url: "{{base_url}}/api/v1/payments/payout-accounts/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "bank_code": "{{bank_code}}",
+      "account_number": "{{account_number}}",
+      "account_name": "{{account_name}}",
+      "is_default": {{is_default}}
+    }
+description: |-
+  Create a payout account.
+
+  Auth: IsAuthenticated + Seller role required.
+   Body: bank_code, account_number, account_name, is_default (optional).
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "bank_name": "string",
+    "account_name": "string",
+    "account_last4": "1234",
+    "is_default": true
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

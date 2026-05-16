@@ -1,0 +1,37 @@
+$kind: http-request
+name: Marketplace lists request
+url: "{{base_url}}/api/v1/marketplace/lists/"
+method: GET
+description: |-
+  List hustle lists for the authenticated buyer.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+         "title": "string",
+         "status": "marketplace_open",
+        "items_count": 3,
+        "subtotal": "150.00",
+        "delivery_fee": "20.00",
+        "delivery_window_label": "Today 2-4 PM",
+        "shopping_location": { "id": "uuid", "name": "string", "address_text": "string", "latitude": 40.7128, "longitude": -74.0060 },
+        "created_at": "2024-01-15T10:30:00Z"
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

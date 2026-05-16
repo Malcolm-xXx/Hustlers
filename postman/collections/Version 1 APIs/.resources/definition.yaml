@@ -1,0 +1,14 @@
+$kind: collection
+name: Version 1 APIs
+description: A comprehensive collection of backend API endpoints for Hustlers v1. Covers authentication, commerce, marketplace, messaging, notifications, trust, locations, and analytics — organized for development, testing, and integration workflows.
+variables:
+  base_url: "http://127.0.0.1:8000"
+  access_token: ""
+  refresh_token: ""
+auth:
+  - id: ae69d761-873f-4aaf-a3a1-d45c377e7c15
+    type: bearer
+    name: Bearer Token
+    description: Description for bearer token
+    credentials:
+      token: "{{access_token}}"

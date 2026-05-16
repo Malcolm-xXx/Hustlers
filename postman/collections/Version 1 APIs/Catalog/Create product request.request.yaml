@@ -1,0 +1,81 @@
+$kind: http-request
+name: Create product request
+url: "{{base_url}}/api/v1/catalog/products/"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: name
+      value: "{{name}}"
+    - type: text
+      key: category_id
+      value: "{{category_id}}"
+    - type: text
+      key: base_price
+      value: "{{base_price}}"
+    - type: text
+      key: unit_label
+      value: "{{unit_label}}"
+    - type: text
+      key: description
+      value: "{{description}}"
+    - type: text
+      key: shelf_life_text
+      value: "{{shelf_life_text}}"
+    - type: text
+      key: stock_quantity
+      value: "{{stock_quantity}}"
+    - type: text
+      key: low_stock_threshold
+      value: "{{low_stock_threshold}}"
+    - type: text
+      key: stock_status
+      value: "{{stock_status}}"
+    - type: text
+      key: availability_status
+      value: "{{availability_status}}"
+    - type: text
+      key: publish_status
+      value: "{{publish_status}}"
+    - type: text
+      key: discounted_price
+      value: "{{discounted_price}}"
+    - type: file
+      key: image
+      src: "{{image}}"
+description: |-
+  Create a product.
+
+  Auth: IsAuthenticated + Seller role required.
+  Body: multipart/form-data with name, category_id, base_price, unit_label, description, shelf_life_text, stock_quantity, low_stock_threshold, stock_status, availability_status, publish_status, discounted_price, and optional image.
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "name": "string",
+    "unit_label": "string",
+    "seller": { "id": "uuid", "store_name": "string" },
+    "base_price": "100.00",
+    "discounted_price": null,
+    "is_on_sale": false,
+    "is_low_stock": false,
+    "image_url": "url",
+    "category": "string",
+    "description": "string",
+    "shelf_life_text": "string",
+    "stock_status": "in_stock",
+    "availability_status": "available",
+    "tags": [],
+    "seller_rating": "4.50",
+    "seller_review_count": 10
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

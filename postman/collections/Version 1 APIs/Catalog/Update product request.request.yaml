@@ -1,0 +1,56 @@
+$kind: http-request
+name: Update product request
+url: "{{base_url}}/api/v1/catalog/products/{{product_id}}/"
+method: PATCH
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{name}}",
+      "category_id": "{{category_id}}",
+      "base_price": {{base_price}},
+      "unit_label": "{{unit_label}}",
+      "description": "{{description}}",
+      "shelf_life_text": "{{shelf_life_text}}",
+      "stock_quantity": {{stock_quantity}},
+      "low_stock_threshold": {{low_stock_threshold}},
+      "stock_status": "{{stock_status}}",
+      "availability_status": "{{availability_status}}",
+      "publish_status": "{{publish_status}}",
+       "discounted_price": {{discounted_price}}
+    }
+description: |-
+  Update a product.
+
+  Auth: IsAuthenticated + Seller role required (must own the product).
+  Body: name, category_id, base_price, unit_label, description, shelf_life_text, stock_quantity, low_stock_threshold, stock_status, availability_status, publish_status, discounted_price.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "name": "string",
+    "unit_label": "string",
+    "seller": { "id": "uuid", "store_name": "string" },
+    "base_price": "100.00",
+    "discounted_price": null,
+    "is_on_sale": false,
+    "is_low_stock": false,
+    "image_url": "url",
+    "category": "string",
+    "description": "string",
+    "shelf_life_text": "string",
+    "stock_status": "in_stock",
+    "availability_status": "available",
+    "tags": ["string"],
+    "seller_rating": "4.50",
+    "seller_review_count": 10
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

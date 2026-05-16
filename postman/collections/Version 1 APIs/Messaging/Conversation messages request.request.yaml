@@ -1,0 +1,32 @@
+$kind: http-request
+name: Conversation messages request
+url: "{{base_url}}/api/v1/messaging/conversations/{{conversation_id}}/messages/"
+method: GET
+description: |-
+  List conversation messages.
+
+  Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+         "sender_user_id": "uuid",
+         "body": "string",
+         "created_at": "2024-01-15T10:30:00Z"
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

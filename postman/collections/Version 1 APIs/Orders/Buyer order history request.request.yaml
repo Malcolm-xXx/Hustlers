@@ -1,0 +1,39 @@
+$kind: http-request
+name: Buyer order history request
+url: "{{base_url}}/api/v1/orders/buyer/history/"
+method: GET
+description: |-
+  List buyer order history.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "order_number": "ORD-2024-001",
+        "status": "done",
+        "payment_status": "PAID",
+        "buyer": { "id": "uuid", "full_name": "string", "email": "email" },
+        "seller": { "id": "uuid", "store_name": "string", "location": "string", "rating": "4.50" },
+        "eta_minutes": null,
+        "delivery_address_text": "123 Main St",
+        "items_count": 3,
+        "total_amount": "150.00",
+        "created_at": "2024-01-15T10:30:00Z"
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

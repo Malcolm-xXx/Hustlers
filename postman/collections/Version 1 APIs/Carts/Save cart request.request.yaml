@@ -1,0 +1,26 @@
+$kind: http-request
+name: Save cart request
+url: "{{base_url}}/api/v1/carts/current/save/"
+method: POST
+description: |-
+  Save the current cart for later.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "saved",
+    "items": [...],
+    "seller_count": 1,
+    "subtotal_amount": "100.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

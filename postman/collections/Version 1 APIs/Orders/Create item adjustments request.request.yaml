@@ -1,0 +1,62 @@
+$kind: http-request
+name: Create item adjustments request
+url: "{{base_url}}/api/v1/orders/{{order_id}}/items/{{item_id}}/adjustments/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "new_unit_price": {{new_unit_price}},
+      "reason": "{{reason}}"
+    }
+description: |-
+  Create an item adjustment.
+
+  Auth: IsAuthenticated + Seller role required.
+  Body: new_unit_price, reason.
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "order_number": "ORD-2024-001",
+     "status": "shopping",
+    "payment_status": "PAID",
+    "buyer": { "id": "uuid", "full_name": "string", "email": "email" },
+    "seller": { "id": "uuid", "store_name": "string", "location": "string", "rating": "4.50" },
+    "eta_minutes": 30,
+    "delivery_address_text": "123 Main St",
+    "items_count": 3,
+    "total_amount": "160.00",
+    "created_at": "2024-01-15T10:30:00Z",
+    "items": [
+      {
+        "id": "uuid",
+        "display_name": "Organic Milk",
+        "quantity": 2,
+        "unit_label": "liter",
+        "base_unit_price": "25.00",
+        "final_unit_price": "30.00",
+        "line_total": "60.00",
+         "fulfillment_status": "pending",
+        "adjustment": {
+          "id": "uuid",
+          "old_unit_price": "25.00",
+          "new_unit_price": "30.00",
+          "reason": "Price increase due to availability",
+           "status": "pending",
+          "created_at": "2024-01-15T10:35:00Z"
+        }
+      }
+    ],
+    "review": null,
+    "complaint": null
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

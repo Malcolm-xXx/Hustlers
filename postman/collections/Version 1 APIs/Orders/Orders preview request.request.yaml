@@ -1,0 +1,73 @@
+$kind: http-request
+name: Orders preview request
+url: "{{base_url}}/api/v1/orders/preview/"
+method: POST
+description: |-
+  Preview checkout and order grouping.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+   Success response: `200 OK`
+
+  ```json
+  {
+    "cart": {
+      "id": "uuid",
+      "status": "active",
+      "items": [
+        {
+          "id": "uuid",
+          "product": {
+            "id": "uuid",
+            "name": "string",
+            "unit_label": "string",
+            "seller": { "id": "uuid", "store_name": "string" },
+            "base_price": "100.00",
+            "discounted_price": null,
+            "is_on_sale": false,
+            "is_low_stock": false,
+            "image_url": "url",
+            "category": "string"
+          },
+          "quantity": 1,
+          "line_total": "100.00"
+        }
+      ],
+      "seller_count": 1,
+      "subtotal_amount": "100.00"
+    },
+    "order_groups": [
+      {
+        "seller": {
+          "id": "uuid",
+          "store_name": "string",
+          "profile_image": "url",
+          "status": "active",
+          "rating": "4.50",
+          "rating_count": 10,
+          "completed_orders_count": 50,
+          "distance_km": 1.5,
+          "tags": ["string"],
+          "is_favorite": false
+        },
+        "items": [
+          {
+            "id": "uuid",
+            "product_id": "uuid",
+            "quantity": 1,
+            "unit_price": "100.00",
+            "line_total": "100.00"
+          }
+        ],
+        "subtotal_amount": "100.00"
+      }
+    ],
+    "wallet_balance": "0.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

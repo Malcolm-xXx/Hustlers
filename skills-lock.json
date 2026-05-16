@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "fastapi": {
+      "source": "fastapi/fastapi",
+      "sourceType": "github",
+      "computedHash": "9feb517089c269af4fdab5031dea1100a92fd50081e906ccfaf8a971858e39f9"
+    },
+    "using-ably": {
+      "source": "ably/agent-skills",
+      "sourceType": "github",
+      "computedHash": "ae7262541f28c51034117dffa79e90b451f2db5a0920a0da11bc7873383ffcc6"
+    }
+  }
+}

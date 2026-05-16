@@ -1,0 +1,4 @@
+$kind: collection
+name: Notifications
+description: Notification listing, unread filtering, read-state updates, dismissal, and actions.
+order: 68416749699071

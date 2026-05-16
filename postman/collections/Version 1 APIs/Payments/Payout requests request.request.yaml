@@ -1,0 +1,35 @@
+$kind: http-request
+name: Payout requests request
+url: "{{base_url}}/api/v1/payments/payout-requests/"
+method: GET
+description: |-
+  List payout requests.
+
+  Auth: IsAuthenticated + Seller role required.
+   Query params: status (pending | processing | paid | failed).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "amount": "100.00",
+        "status": "processing",
+        "requested_at": "2024-01-15T10:30:00Z",
+        "processed_at": null,
+        "failure_reason": null
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

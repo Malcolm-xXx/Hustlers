@@ -1,0 +1,37 @@
+$kind: http-request
+name: Verification provider webhook request
+url: "{{base_url}}/api/v1/trust/webhooks/verification-provider/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "id_document_type": "{{id_document_type}}",
+      "id_document_uploaded": {{id_document_uploaded}},
+      "face_capture_uploaded": {{face_capture_uploaded}},
+      "failure_reason": "{{failure_reason}}"
+    }
+description: |-
+  Receive verification provider webhook events.
+
+  Auth: Public.
+
+   Success response: `200 OK`
+
+  ```json
+   {
+     "status": "verified",
+     "id_document_type": "nin",
+     "id_document_uploaded": true,
+     "face_capture_uploaded": true,
+     "failure_reason": null,
+     "submitted_at": null,
+     "verified_at": null
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

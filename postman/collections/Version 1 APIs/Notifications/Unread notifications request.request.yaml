@@ -1,0 +1,37 @@
+$kind: http-request
+name: Unread notifications request
+url: "{{base_url}}/api/v1/notifications/unread/"
+method: GET
+description: |-
+  List unread notifications for the authenticated user.
+
+  Auth: IsAuthenticated.
+  Query params: category (optional).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "category": "orders",
+        "notification_type": "order_status",
+        "subject": "Order Update",
+        "body": "Your order has been delivered",
+        "is_read": false,
+        "created_at": "2024-01-15T10:30:00Z",
+        "payload": {}
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

@@ -1,0 +1,37 @@
+$kind: http-request
+name: Discovery locations request
+url: "{{base_url}}/api/v1/discovery/locations/"
+method: GET
+description: |-
+  Browse locations.
+
+  Auth: IsAuthenticated + Buyer role required.
+  Query params: q (search), sort (popular | name), address_id, latitude, longitude.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+       {
+         "id": "uuid",
+         "name": "string",
+         "kind": "market",
+         "market_type": null,
+         "address_text": "string",
+        "distance_km": 1.5,
+        "rating": "4.00",
+        "seller_count": 10
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

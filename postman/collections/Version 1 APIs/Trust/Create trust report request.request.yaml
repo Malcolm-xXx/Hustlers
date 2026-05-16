@@ -1,0 +1,44 @@
+$kind: http-request
+name: Create trust report request
+url: "{{base_url}}/api/v1/trust/reports/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "reported_user_id": "{{reported_user_id}}",
+      "reason_type": "{{reason_type}}",
+      "details": "{{details}}",
+     "order_id": "{{order_id}}",
+     "conversation_id": "{{conversation_id}}"
+    }
+description: |-
+  Create a trust report.
+
+  Auth: IsAuthenticated.
+  Body: reported_user_id, reason_type, details. order_id and conversation_id are optional.
+
+  Success response: `201 Created`
+
+  ```json
+   {
+     "id": "uuid",
+     "reported_user": {
+       "id": "uuid",
+       "full_name": "string",
+       "email": "user@example.com",
+       "role": "buyer",
+       "is_onboarded": true
+     },
+     "reason_type": "harassment",
+     "details": "string",
+     "status": "pending",
+     "created_at": "2024-01-15T10:30:00Z"
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

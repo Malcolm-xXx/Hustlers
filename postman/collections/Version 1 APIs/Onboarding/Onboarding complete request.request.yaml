@@ -1,0 +1,40 @@
+$kind: http-request
+name: Onboarding complete request
+url: "{{base_url}}/api/v1/onboarding/complete/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{name}}",
+      "latitude": {{latitude}},
+      "longitude": {{longitude}},
+      "onboarding_data": {{onboarding_data}}
+    }
+description: |-
+  Complete onboarding with a delivery address.
+
+  Auth: IsAuthenticated + Buyer role required.
+  Body: name, latitude, longitude, onboarding_data (optional).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "detail": "Onboarding complete.",
+    "user": {
+      "id": "uuid",
+      "email": "user@example.com",
+      "full_name": "string",
+      "role": "buyer",
+      "is_onboarded": true,
+      ...
+    }
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

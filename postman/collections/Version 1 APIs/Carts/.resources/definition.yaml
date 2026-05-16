@@ -1,0 +1,4 @@
+$kind: collection
+name: Carts
+description: Current and saved cart management, including item updates, clearing, saving, and restoring carts.
+order: 425402006765567

@@ -1,0 +1,43 @@
+$kind: http-request
+name: Create sale campaign request
+url: "{{base_url}}/api/v1/catalog/sale-campaigns/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "name": "{{name}}",
+      "campaign_type": "{{campaign_type}}",
+      "discount_percent": {{discount_percent}},
+      "starts_at": "{{starts_at}}",
+      "ends_at": "{{ends_at}}",
+      "product_ids": ["{{product_id_1}}", "{{product_id_2}}"]
+    }
+description: |-
+  Create a sale campaign.
+
+  Auth: IsAuthenticated + Seller role required.
+  Body: name, campaign_type (single_item | store_wide), discount_percent, starts_at, ends_at, product_ids.
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "name": "string",
+    "campaign_type": "single_item",
+    "discount_percent": "10.00",
+    "starts_at": "2024-01-15T00:00:00Z",
+    "ends_at": "2024-01-22T00:00:00Z",
+    "status": "scheduled",
+    "items": [
+      { "product_id": "uuid", "discounted_price": "90.00" }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

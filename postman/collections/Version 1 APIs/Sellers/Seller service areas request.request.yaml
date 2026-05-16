@@ -1,0 +1,27 @@
+$kind: http-request
+name: Seller service areas request
+url: "{{base_url}}/api/v1/sellers/me/service-areas/"
+method: GET
+description: |-
+  Fetch the authenticated seller's service areas.
+
+  Auth: IsAuthenticated + Seller role required.
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "id": "uuid",
+      "location": { "id": "uuid", "name": "string", "address_text": "string", "latitude": 40.7128, "longitude": -74.0060 },
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

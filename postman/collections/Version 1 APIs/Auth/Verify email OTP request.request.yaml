@@ -1,0 +1,46 @@
+$kind: http-request
+name: Verify email OTP request
+url: "{{base_url}}/api/v1/auth/register/verify-email-otp/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "email": "{{email}}",
+      "otp": "{{otp}}"
+    }
+order: 1776961561551
+description: |-
+  Verify the email OTP sent during registration.
+
+  Auth: Public
+
+  Request body:
+  ```json
+  {
+  "email": "email",
+   "otp": "6-digit numeric string"
+  }
+  ```
+
+  Success response: `200 OK`
+
+  ```json
+  {
+  "detail": "Email verified successfully."
+  }
+  ```
+
+  Error response: `400 Bad Request`
+
+  ```json
+  {
+  "detail": "Invalid or expired verification code."
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

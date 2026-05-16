@@ -1,0 +1,30 @@
+$kind: http-request
+name: Notification action request
+url: "{{base_url}}/api/v1/notifications/{{notification_id}}/action/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "action": "{{action}}"
+    }
+description: |-
+  Execute a notification action.
+
+   Auth: IsAuthenticated.
+   Body: action.
+
+   Success response: `200 OK`
+
+   ```json
+   {
+     "notification": {},
+     "related_object": null
+   }
+   ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

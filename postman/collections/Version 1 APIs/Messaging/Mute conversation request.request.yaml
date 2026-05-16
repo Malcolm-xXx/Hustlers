@@ -1,0 +1,41 @@
+$kind: http-request
+name: Mute conversation request
+url: "{{base_url}}/api/v1/messaging/conversations/{{conversation_id}}/mute/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "muted_until": "{{muted_until}}"
+    }
+description: |-
+  Mute a conversation.
+
+  Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "active",
+    "order_id": "uuid",
+    "peer": {
+      "id": "uuid",
+      "full_name": "string",
+      "profile_photo": "url"
+    },
+    "latest_message_preview": "string",
+    "latest_message_at": "2024-01-15T10:30:00Z",
+    "unread_count": 2,
+    "muted_until": "2024-01-16T10:30:00Z",
+    "cleared_at": null,
+    "messages": []
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

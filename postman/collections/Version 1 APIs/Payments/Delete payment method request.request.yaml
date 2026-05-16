@@ -1,0 +1,16 @@
+$kind: http-request
+name: Delete payment method request
+url: "{{base_url}}/api/v1/payments/payment-methods/{{payment_method_id}}/"
+method: DELETE
+description: |-
+  Delete a payment method.
+
+  Auth: IsAuthenticated.
+
+  Success response: `204 No Content`
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

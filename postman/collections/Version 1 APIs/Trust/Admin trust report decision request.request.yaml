@@ -1,0 +1,41 @@
+$kind: http-request
+name: Admin trust report decision request
+url: "{{base_url}}/api/v1/trust/admin/reports/{{report_id}}/decision/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "decision": "{{decision}}",
+      "resolution_note": "{{resolution_note}}"
+    }
+description: |-
+  Submit an admin decision on a trust report.
+
+  Auth: IsAuthenticated + admin permissions required.
+  Body: decision (reviewed | resolved | dismissed), resolution_note (optional).
+
+  Success response: `200 OK`
+
+  ```json
+   {
+     "id": "uuid",
+     "reported_user": {
+       "id": "uuid",
+       "full_name": "string",
+       "email": "user@example.com",
+       "role": "buyer",
+       "is_onboarded": true
+     },
+     "reason_type": "harassment",
+     "details": "string",
+     "status": "reviewed",
+     "created_at": "2024-01-15T10:30:00Z"
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

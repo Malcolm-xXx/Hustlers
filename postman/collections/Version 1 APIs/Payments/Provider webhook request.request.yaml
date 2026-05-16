@@ -1,0 +1,31 @@
+$kind: http-request
+name: Provider webhook request
+url: "{{base_url}}/api/v1/payments/webhooks/provider/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "event": "{{event}}",
+      "data": {}
+    }
+description: |-
+  Receive provider webhook events.
+
+  Auth: AllowAny (requires valid webhook signature).
+   Headers: X-PAYSTACK-SIGNATURE, X-PAYMENT-SIGNATURE.
+  Body: Raw webhook payload from payment provider.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "received": true
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

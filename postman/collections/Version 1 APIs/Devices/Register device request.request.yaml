@@ -1,0 +1,34 @@
+$kind: http-request
+name: Register device
+url: "{{base_url}}/api/v1/devices/register/"
+method: POST
+description: |-
+  Register a device for push notifications.
+
+  Auth: IsAuthenticated.
+
+  Registers a device with FCM push token to receive push notifications. The device_id can be provided to update an existing registration, or omitted to create a new one.
+
+  Request body:
+  ```json
+  {
+    "push_token": "fcm-device-token",
+    "device_id": "dev-abc123"  // optional
+  }
+  ```
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "device_id": "dev-abc123",
+    "platform": "fcm"
+  }
+  ```
+
+  Common errors:
+  - `401 Unauthorized`: authentication required
+  - `400 Bad Request`: validation error
+
+auth:
+  type: bearer

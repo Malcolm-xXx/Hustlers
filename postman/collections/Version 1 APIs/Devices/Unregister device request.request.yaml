@@ -1,0 +1,17 @@
+$kind: http-request
+name: Unregister device
+url: "{{base_url}}/api/v1/devices/{device_id}/"
+method: DELETE
+description: |-
+  Unregister a device.
+
+  Auth: IsAuthenticated.
+
+  Deactivates a device registration so it no longer receives push notifications.
+
+  Common errors:
+  - `401 Unauthorized`: authentication required
+  - `404 Not Found`: device not found
+
+auth:
+  type: bearer

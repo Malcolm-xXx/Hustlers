@@ -1,0 +1,19 @@
+$kind: http-request
+name: Me delete request
+url: "{{base_url}}/api/v1/auth/me/"
+method: DELETE
+order: 1776961561562
+description: |-
+  Soft-delete the authenticated user.
+
+  Auth: IsAuthenticated
+
+  Success response: `204 No Content`
+
+  The account is deactivated (`is_active = false`).
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

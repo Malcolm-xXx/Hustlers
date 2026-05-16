@@ -1,0 +1,37 @@
+$kind: http-request
+name: Marketplace dispatches request
+url: "{{base_url}}/api/v1/marketplace/dispatches/"
+method: GET
+description: |-
+  List dispatches (incoming for sellers, outgoing for buyers).
+
+  Auth: IsAuthenticated + Buyer or Seller role required.
+   Query params: role (buyer | seller), status (optional).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "channel": "direct",
+        "status": "pending",
+        "target_seller": { "id": "uuid", "store_name": "string", "profile_image": "url", "status": "active", "rating": "4.50", "rating_count": 10, "completed_orders_count": 50, "distance_km": 1.5, "tags": ["string"], "is_favorite": false },
+        "accepted_by_seller": null,
+        "sent_at": "2024-01-15T10:30:00Z",
+        "responded_at": null,
+        "expires_at": "2024-01-15T18:30:00Z"
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

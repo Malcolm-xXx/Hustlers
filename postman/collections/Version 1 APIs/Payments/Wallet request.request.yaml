@@ -1,0 +1,25 @@
+$kind: http-request
+name: Wallet request
+url: "{{base_url}}/api/v1/payments/wallet/"
+method: GET
+description: |-
+  Fetch wallet summary.
+
+  Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "wallet_id": "uuid",
+    "currency_code": "KES",
+    "available_balance": "100.00",
+    "pending_balance": "50.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

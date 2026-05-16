@@ -1,0 +1,67 @@
+$kind: http-request
+name: Create item alternatives request
+url: "{{base_url}}/api/v1/orders/{{order_id}}/items/{{item_id}}/alternatives/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "suggested_product_id": "{{suggested_product_id}}",
+      "suggested_name": "{{suggested_name}}",
+      "suggested_unit_label": "{{suggested_unit_label}}",
+      "suggested_price": {{suggested_price}},
+      "note": "{{note}}"
+    }
+description: |-
+  Create alternatives for an order item.
+
+  Auth: IsAuthenticated + Seller role required.
+  Body: suggested_product_id, suggested_name, suggested_unit_label, suggested_price, note.
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "order_number": "ORD-2024-001",
+     "status": "shopping",
+    "payment_status": "PAID",
+    "buyer": { "id": "uuid", "full_name": "string", "email": "email" },
+    "seller": { "id": "uuid", "store_name": "string", "location": "string", "rating": "4.50" },
+    "eta_minutes": 30,
+    "delivery_address_text": "123 Main St",
+    "items_count": 3,
+    "total_amount": "150.00",
+    "created_at": "2024-01-15T10:30:00Z",
+    "items": [
+      {
+        "id": "uuid",
+        "display_name": "Organic Milk",
+        "quantity": 2,
+        "unit_label": "liter",
+        "base_unit_price": "25.00",
+        "final_unit_price": "25.00",
+        "line_total": "50.00",
+         "fulfillment_status": "pending",
+        "alternatives": [
+          {
+            "id": "uuid",
+            "suggested_name": "Organic Almond Milk",
+            "suggested_unit_label": "liter",
+            "suggested_price": "30.00",
+            "note": "Similar product, slightly higher price",
+             "status": "pending"
+          }
+        ]
+      }
+    ],
+    "review": null,
+    "complaint": null
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

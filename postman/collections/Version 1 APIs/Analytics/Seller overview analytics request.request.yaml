@@ -1,0 +1,32 @@
+$kind: http-request
+name: Seller overview analytics request
+url: "{{base_url}}/api/v1/analytics/seller/overview/"
+method: GET
+description: |-
+  Fetch seller overview metrics.
+
+  Auth: IsAuthenticated + Seller role required.
+  Query params: range (today | week | month, default: week).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "range": "week",
+    "total_earnings": "1500.00",
+    "earnings_change_pct": "10.00",
+    "total_orders": 15,
+    "orders_change_pct": "5.00",
+    "total_hustles": 3,
+    "hustles_change_pct": "0.00",
+    "avg_rating": "4.50",
+    "avg_delivery_minutes": 25,
+    "success_rate": "0.9500"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

@@ -1,0 +1,35 @@
+$kind: http-request
+name: Logout request
+url: "{{base_url}}/api/v1/auth/logout/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "refresh": "{{refresh_token}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.collectionVariables.set("access_token", "");
+      pm.collectionVariables.set("refresh_token", "");
+order: 1776961561555
+description: |-
+  Log out the current authenticated user.
+
+  Auth: IsAuthenticated
+
+  Request body:
+  ```json
+  {
+  "refresh": "jwt refresh token"
+  }
+  ```
+
+  Success response: `205 Reset Content`
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

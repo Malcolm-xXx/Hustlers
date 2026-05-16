@@ -1,0 +1,22 @@
+$kind: http-request
+name: Mark all conversations read request
+url: "{{base_url}}/api/v1/messaging/conversations/mark-all-read/"
+method: POST
+description: |-
+  Mark all conversations as read.
+
+  Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "detail": "All conversations marked as read."
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

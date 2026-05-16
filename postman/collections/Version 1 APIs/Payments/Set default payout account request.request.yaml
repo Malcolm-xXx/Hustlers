@@ -1,0 +1,26 @@
+$kind: http-request
+name: Set default payout account request
+url: "{{base_url}}/api/v1/payments/payout-accounts/{{payout_account_id}}/default/"
+method: PATCH
+description: |-
+  Set a payout account as default.
+
+  Auth: IsAuthenticated + Seller role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "bank_name": "string",
+    "account_name": "string",
+    "account_last4": "1234",
+    "is_default": true
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

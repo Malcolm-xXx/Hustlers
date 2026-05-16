@@ -1,0 +1,36 @@
+$kind: http-request
+name: Wallet transactions request
+url: "{{base_url}}/api/v1/payments/wallet/transactions/"
+method: GET
+description: |-
+  Fetch wallet transactions.
+
+  Auth: IsAuthenticated.
+   Query params: type (funding | payment | payout | refund).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "transaction_type": "funding",
+        "amount": "100.00",
+        "balance_after": "200.00",
+        "status": "succeeded",
+        "note": "string",
+        "created_at": "2024-01-15T10:30:00Z"
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

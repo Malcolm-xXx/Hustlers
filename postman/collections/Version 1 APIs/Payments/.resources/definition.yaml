@@ -1,0 +1,4 @@
+$kind: collection
+name: Payments
+description: Wallet, payment methods, payout accounts, payout requests, payment details, and provider webhooks.
+order: 979575052959743

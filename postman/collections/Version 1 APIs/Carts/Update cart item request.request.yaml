@@ -1,0 +1,51 @@
+$kind: http-request
+name: Update cart item request
+url: "{{base_url}}/api/v1/carts/current/items/{{item_id}}/"
+method: PATCH
+body:
+  type: json
+  content: |-
+    {
+      "quantity": {{quantity}}
+    }
+description: |-
+  Update a cart item quantity.
+
+  Auth: IsAuthenticated + Buyer role required.
+  Body: quantity.
+
+   Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "active",
+    "items": [
+      {
+        "id": "uuid",
+        "product": {
+          "id": "uuid",
+          "name": "string",
+          "unit_label": "string",
+          "seller": { "id": "uuid", "store_name": "string" },
+          "base_price": "100.00",
+          "discounted_price": null,
+          "is_on_sale": false,
+          "is_low_stock": false,
+          "image_url": "url",
+          "category": "string"
+        },
+        "quantity": 2,
+        "line_total": "200.00"
+      }
+    ],
+    "seller_count": 1,
+    "subtotal_amount": "200.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

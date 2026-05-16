@@ -1,0 +1,28 @@
+$kind: http-request
+name: Submit trust verification request
+url: "{{base_url}}/api/v1/trust/verification/submit/"
+method: POST
+description: |-
+  Submit verification for review.
+
+  Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "status": "pending",
+    "id_document_type": "id_card",
+    "id_document_uploaded": true,
+    "face_capture_uploaded": true,
+    "failure_reason": null,
+    "submitted_at": "2024-01-15T10:30:00Z",
+    "verified_at": null
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

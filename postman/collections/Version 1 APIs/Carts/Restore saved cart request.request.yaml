@@ -1,0 +1,26 @@
+$kind: http-request
+name: Restore saved cart request
+url: "{{base_url}}/api/v1/carts/saved/{{cart_id}}/restore/"
+method: POST
+description: |-
+  Restore a saved cart as the current active cart.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "active",
+    "items": [...],
+    "seller_count": 1,
+    "subtotal_amount": "100.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

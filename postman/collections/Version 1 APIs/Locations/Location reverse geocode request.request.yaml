@@ -1,0 +1,43 @@
+$kind: http-request
+name: Location reverse geocode request
+url: "{{base_url}}/api/v1/locations/reverse-geocode/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "latitude": {{latitude}},
+      "longitude": {{longitude}}
+    }
+description: |-
+  Resolve coordinates into a stored location.
+
+  Auth: IsAuthenticated.
+  Body: latitude, longitude.
+
+  Success response: `200 OK`
+
+   ```json
+   {
+     "detail": "Location resolved.",
+     "location": {
+       "id": "uuid",
+       "provider": "google_places",
+       "provider_place_id": "ChI...",
+       "name": "123 Main St",
+       "address_text": "123 Main St, New York, NY 10001, USA",
+       "latitude": 40.7128,
+       "longitude": -74.0060,
+       "coordinates": { "latitude": 40.7128, "longitude": -74.0060 },
+       "is_active": true,
+       "created_at": "2024-01-01T00:00:00Z",
+       "updated_at": "2024-01-01T00:00:00Z"
+     }
+   }
+   ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

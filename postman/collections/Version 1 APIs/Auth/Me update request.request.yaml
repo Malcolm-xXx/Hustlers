@@ -1,0 +1,28 @@
+$kind: http-request
+name: Me update request
+url: "{{base_url}}/api/v1/auth/me/"
+method: PATCH
+order: 1776961561561
+description: |-
+  Update the authenticated user's profile.
+
+  Auth: IsAuthenticated
+
+  Request body:
+  ```json
+  {
+  "full_name": "string (optional)",
+  "phone_number": "string (optional)",
+  "profile_photo": "file or null (optional)"
+  }
+  ```
+
+  Success response: `200 OK`
+
+  Same shape as `GET /api/v1/auth/me/`.
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

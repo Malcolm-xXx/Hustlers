@@ -1,0 +1,37 @@
+$kind: http-request
+name: Seller service area opportunities analytics request
+url: "{{base_url}}/api/v1/analytics/seller/service-area-opportunities/"
+method: GET
+description: |-
+  Fetch seller service area opportunities.
+
+  Auth: IsAuthenticated + Seller role required.
+   Query params: limit (default: 10).
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "location": {
+        "id": "uuid",
+        "name": "string",
+        "kind": "market",
+        "market_type": null,
+        "address_text": "string",
+        "distance_km": null,
+        "rating": "4.00",
+        "seller_count": 10
+      },
+      "weekly_orders": 15,
+      "customers_count": 10,
+      "avg_order_amount": "100.00"
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

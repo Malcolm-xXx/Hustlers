@@ -1,0 +1,41 @@
+$kind: http-request
+name: Create payment method request
+url: "{{base_url}}/api/v1/payments/payment-methods/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "provider_token": "{{provider_token}}",
+      "method_type": "{{method_type}}",
+      "brand": "{{brand}}",
+      "last4": "{{last4}}",
+      "expiry_month": {{expiry_month}},
+      "expiry_year": {{expiry_year}},
+      "is_default": {{is_default}}
+    }
+description: |-
+  Create a payment method.
+
+  Auth: IsAuthenticated.
+  Body: provider_token, method_type, brand (optional), last4 (optional), expiry_month (optional), expiry_year (optional), is_default (optional).
+
+   Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "method_type": "card",
+    "brand": "visa",
+    "last4": "4242",
+    "expiry_month": 12,
+    "expiry_year": 2025,
+    "is_default": true
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

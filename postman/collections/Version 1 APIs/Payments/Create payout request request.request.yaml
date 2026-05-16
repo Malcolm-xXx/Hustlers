@@ -1,0 +1,35 @@
+$kind: http-request
+name: Create payout request request
+url: "{{base_url}}/api/v1/payments/payout-requests/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "amount": {{amount}},
+      "payout_account_id": "{{payout_account_id}}"
+    }
+description: |-
+  Create a payout request.
+
+  Auth: IsAuthenticated + Seller role required.
+   Body: amount, payout_account_id.
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "amount": "100.00",
+    "status": "processing",
+    "requested_at": "2024-01-15T10:30:00Z",
+    "processed_at": null,
+    "failure_reason": null
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

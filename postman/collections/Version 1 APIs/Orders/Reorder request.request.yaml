@@ -1,0 +1,46 @@
+$kind: http-request
+name: Reorder request
+url: "{{base_url}}/api/v1/orders/{{order_id}}/reorder/"
+method: POST
+description: |-
+  Reorder a past order.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "current",
+    "buyer": { "id": "uuid", "full_name": "string", "email": "email" },
+    "items": [
+      {
+        "id": "uuid",
+        "product": {
+          "id": "uuid",
+          "name": "Organic Milk",
+          "unit_label": "liter",
+          "seller": { "id": "uuid", "store_name": "string" },
+          "base_price": "25.00",
+          "discounted_price": null,
+          "is_on_sale": false,
+          "is_low_stock": false,
+          "image_url": "url",
+          "category": "string"
+        },
+        "quantity": 2,
+        "unit_label": "liter",
+        "line_total": "50.00",
+        "line_total_snapshot": "50.00"
+      }
+    ],
+    "checked_out_at": null
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

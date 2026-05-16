@@ -1,0 +1,37 @@
+$kind: http-request
+name: Update product tags request
+url: "{{base_url}}/api/v1/catalog/products/{{product_id}}/tags/"
+method: PUT
+body:
+  type: json
+  content: |-
+    {
+      "tag_ids": ["{{tag_id_1}}", "{{tag_id_2}}"]
+    }
+description: |-
+  Replace all tags on a product.
+
+  Auth: IsAuthenticated + Seller role required (must own the product).
+  Body: tag_ids (list of UUIDs).
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "id": "uuid",
+      "tag": {
+        "id": "uuid",
+        "name": "string",
+        "slug": "string",
+        "tag_scope": "product"
+      }
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

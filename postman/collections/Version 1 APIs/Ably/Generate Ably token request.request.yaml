@@ -1,0 +1,18 @@
+$kind: http-request
+name: Generate Ably token
+url: "{{base_url}}/api/v1/ably/auth"
+method: POST
+description: |-
+  Get an Ably JWT token for real-time subscriptions.
+
+  Auth: IsAuthenticated.
+
+  This endpoint returns a JWT that clients use to authenticate with Ably for real-time messaging and push notifications. The token grants subscribe permissions to the user's notification channel and all conversation channels.
+
+  Success response: `200 OK` with a JSON object containing the token.
+
+  Common errors:
+  - `401 Unauthorized`: authentication required
+
+auth:
+  type: bearer

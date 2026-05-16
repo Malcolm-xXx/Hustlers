@@ -1,0 +1,32 @@
+$kind: http-request
+name: Trust id document request
+url: "{{base_url}}/api/v1/trust/verification/id-document-from-url/"
+method: POST
+body:
+  type: json
+  content: '{"id_document_image_url": "{{id_document_image_url}}", "id_document_image_public_id": "{{id_document_image_public_id}}", "id_document_type": "{{id_document_type}}"}'
+description: |-
+  Finalize an ID document upload after uploading directly to Cloudinary.
+
+  Auth: IsAuthenticated.
+  Body: JSON with `id_document_image_url`, `id_document_image_public_id`, and `id_document_type`.
+
+  Success response: `200 OK`
+
+  ```json
+   {
+     "status": "not_started",
+     "id_document_type": "id_card",
+     "id_document_uploaded": true,
+     "face_capture_uploaded": false,
+     "failure_reason": null,
+     "submitted_at": null,
+     "verified_at": null
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

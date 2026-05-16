@@ -1,0 +1,30 @@
+$kind: http-request
+name: My seller tags request
+url: "{{base_url}}/api/v1/catalog/me/tags/"
+method: GET
+description: |-
+  Fetch the authenticated seller's tags.
+
+  Auth: IsAuthenticated + Seller role required.
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "id": "uuid",
+      "tag": {
+        "id": "uuid",
+        "name": "string",
+        "slug": "string",
+        "tag_scope": "seller"
+      }
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

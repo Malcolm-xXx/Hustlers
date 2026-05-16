@@ -1,0 +1,77 @@
+$kind: http-request
+name: Discovery search request
+url: "{{base_url}}/api/v1/discovery/search/"
+method: GET
+description: |-
+  Search sellers, items, and locations.
+
+  Auth: IsAuthenticated + Buyer role required.
+  Query params: q (required), type (all | items | sellers | locations), category, favorites_only, min_price, max_price, distance, address_id, latitude, longitude.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "items": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": "uuid",
+          "name": "string",
+          "unit_label": "string",
+          "seller": { "id": "uuid", "store_name": "string" },
+          "base_price": "100.00",
+          "discounted_price": null,
+          "is_on_sale": false,
+          "is_low_stock": false,
+          "image_url": "url",
+          "category": "string"
+        }
+      ]
+    },
+    "sellers": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": "uuid",
+          "store_name": "string",
+          "profile_image": "url",
+          "status": "active",
+          "rating": "4.50",
+          "rating_count": 10,
+          "completed_orders_count": 50,
+          "distance_km": 1.5,
+          "tags": ["string"],
+          "is_favorite": false
+        }
+      ]
+    },
+    "locations": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+         {
+           "id": "uuid",
+           "name": "string",
+           "kind": "market",
+           "market_type": null,
+           "address_text": "string",
+          "distance_km": 1.5,
+          "rating": "4.00",
+          "seller_count": 10
+        }
+      ]
+    }
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

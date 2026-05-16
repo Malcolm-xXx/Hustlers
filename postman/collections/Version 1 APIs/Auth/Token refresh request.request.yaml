@@ -1,0 +1,52 @@
+$kind: http-request
+name: Token refresh request
+url: "{{base_url}}/api/v1/auth/token/refresh/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "refresh": "{{refresh_token}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      try {
+        var data = JSON.parse(responseBody);
+        if (data.access) {
+          pm.collectionVariables.set("access_token", data.access);
+        }
+        if (data.refresh) {
+          pm.collectionVariables.set("refresh_token", data.refresh);
+        }
+      } catch (e) {
+        console.log("Failed to parse response: " + e);
+      }
+    language: text/javascript
+order: 1776961561554
+description: |-
+  Refresh a JWT access token.
+
+  Auth: Public
+
+  Request body:
+  ```json
+  {
+  "refresh": "jwt refresh token"
+  }
+  ```
+
+  Success response: `200 OK`
+
+  ```json
+  {
+  "access": "jwt access token",
+  "refresh": "jwt refresh token"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

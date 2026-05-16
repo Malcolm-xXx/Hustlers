@@ -1,0 +1,23 @@
+$kind: http-request
+name: Resolve conversation request
+url: "{{base_url}}/api/v1/messaging/conversations/{{conversation_id}}/resolve/"
+method: POST
+description: |-
+  Resolve a conversation.
+
+  Auth: IsAuthenticated.
+
+   Success response: `200 OK`
+
+  ```json
+   {
+     "id": "uuid",
+     "status": "resolved"
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

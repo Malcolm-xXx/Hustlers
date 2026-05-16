@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "astral-sh.ty",
+    "charliermarsh.ruff",
+    "esbenp.prettier-vscode",
+    "tamasfe.even-better-toml",
+    "ms-python.python",
+    "ms-azuretools.vscode-containers",
+    "ms-azuretools.vscode-docker"
+  ]
+}

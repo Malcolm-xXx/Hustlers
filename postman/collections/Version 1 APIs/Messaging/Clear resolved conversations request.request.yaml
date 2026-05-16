@@ -1,0 +1,22 @@
+$kind: http-request
+name: Clear resolved conversations request
+url: "{{base_url}}/api/v1/messaging/conversations/clear-resolved/"
+method: POST
+description: |-
+  Clear resolved conversations.
+
+  Auth: IsAuthenticated.
+
+   Success response: `200 OK`
+
+  ```json
+   {
+     "detail": "Resolved conversations cleared."
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

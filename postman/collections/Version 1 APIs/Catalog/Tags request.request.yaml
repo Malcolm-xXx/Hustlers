@@ -1,0 +1,28 @@
+$kind: http-request
+name: Tags request
+url: "{{base_url}}/api/v1/catalog/tags/"
+method: GET
+description: |-
+  List active tags.
+
+  Auth: IsAuthenticated + Buyer or Seller role required.
+  Query params: scope (optional) - seller | product | both
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "id": "uuid",
+      "name": "string",
+      "slug": "string",
+      "tag_scope": "seller" | "product" | "both"
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

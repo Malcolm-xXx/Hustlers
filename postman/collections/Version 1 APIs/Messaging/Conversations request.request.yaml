@@ -1,0 +1,40 @@
+$kind: http-request
+name: Conversations request
+url: "{{base_url}}/api/v1/messaging/conversations/"
+method: GET
+description: |-
+  List conversations.
+
+  Auth: IsAuthenticated.
+  Query params: status (active | resolved), search.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "status": "active",
+        "order_id": "uuid",
+        "peer": {
+          "id": "uuid",
+          "full_name": "string",
+          "profile_photo": "url"
+        },
+        "latest_message_preview": "string",
+        "latest_message_at": "2024-01-15T10:30:00Z",
+        "unread_count": 2
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

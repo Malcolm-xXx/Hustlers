@@ -1,0 +1,4 @@
+$kind: collection
+name: Locations
+description: Location suggestion, resolution, and reverse-geocoding endpoints.
+order: 1160214213558271

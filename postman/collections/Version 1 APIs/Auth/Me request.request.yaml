@@ -1,0 +1,44 @@
+$kind: http-request
+name: Me request
+url: "{{base_url}}/api/v1/auth/me/"
+method: GET
+order: 1776961561560
+description: |-
+  Fetch the authenticated user's profile.
+
+  Auth: IsAuthenticated
+
+  Success response: `200 OK`
+
+  ``` json
+  {
+  "id": "uuid",
+  "full_name": "string",
+  "email": "email",
+  "phone_number": "string",
+  "profile_photo": "url or null",
+  "role": "string",
+  "is_onboarded": boolean,
+  "onboarding_data": {},
+   "default_delivery_address": {
+   "id": "uuid",
+   "location": {
+   "id": "uuid",
+   "name": "string",
+   "address_text": "string",
+   "coordinates": { "latitude": number, "longitude": number }
+   },
+   "is_default": boolean,
+   "created_at": "datetime"
+   },
+  "saved_addresses": [],
+  "date_joined": "datetime"
+  }
+
+   ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

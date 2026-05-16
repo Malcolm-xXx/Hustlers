@@ -1,0 +1,41 @@
+$kind: http-request
+name: Seller detail request
+url: "{{base_url}}/api/v1/sellers/{{seller_id}}/"
+method: GET
+description: |-
+  Fetch a seller profile by ID.
+
+   Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "store_name": "string",
+    "profile_image": "url",
+    "status": "active",
+    "rating": "4.50",
+    "rating_count": 10,
+    "completed_orders_count": 50,
+    "distance_km": null,
+    "tags": ["string"],
+    "is_favorite": false,
+    "user_id": "uuid",
+    "bio": "string",
+    "banner_image": "url",
+    "total_items_count": 20,
+    "items_on_sale_count": 15,
+    "weekly_store_views": 100,
+    "average_delivery_minutes": 25,
+    "success_rate": "0.95",
+    "presence": { "status": "active", "current_location": null, "last_seen_at": "2024-01-15T10:30:00Z" },
+    "service_areas": [{ "id": "uuid", "location": { "id": "uuid", "name": "string", "address_text": "string", "latitude": "decimal", "longitude": "decimal" }, "is_active": true, "created_at": "datetime" }]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

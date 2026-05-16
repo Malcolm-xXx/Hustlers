@@ -1,0 +1,28 @@
+$kind: http-request
+name: Categories request
+url: "{{base_url}}/api/v1/catalog/categories/"
+method: GET
+description: |-
+  List active categories.
+
+  Auth: IsAuthenticated + Buyer or Seller role required.
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "id": "uuid",
+      "name": "string",
+      "slug": "string",
+      "parent_id": "uuid" | null,
+      "display_order": 1
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

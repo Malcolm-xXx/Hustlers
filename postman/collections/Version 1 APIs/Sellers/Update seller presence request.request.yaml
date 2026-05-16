@@ -1,0 +1,32 @@
+$kind: http-request
+name: Update seller presence request
+url: "{{base_url}}/api/v1/sellers/me/presence/"
+method: PATCH
+body:
+  type: json
+  content: |-
+    {
+       "status": "{{status}}",
+       "current_location": "{{current_location}}"
+    }
+description: |-
+  Update seller presence state.
+
+  Auth: IsAuthenticated + Seller role required.
+  Body: presence fields from the docs.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "status": "active",
+    "current_location": { "id": "uuid", "name": "string", "address_text": "string", "latitude": "decimal", "longitude": "decimal" },
+    "last_seen_at": "2024-01-15T10:30:00Z"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

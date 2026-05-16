@@ -1,0 +1,44 @@
+$kind: http-request
+name: Current cart request
+url: "{{base_url}}/api/v1/carts/current/"
+method: GET
+description: |-
+  Fetch the current active cart.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "active",
+    "items": [
+      {
+        "id": "uuid",
+        "product": {
+          "id": "uuid",
+          "name": "string",
+          "unit_label": "string",
+          "seller": { "id": "uuid", "store_name": "string" },
+          "base_price": "100.00",
+          "discounted_price": null,
+          "is_on_sale": false,
+          "is_low_stock": false,
+          "image_url": "url",
+          "category": "string"
+        },
+        "quantity": 1,
+        "line_total": "100.00"
+      }
+    ],
+    "seller_count": 1,
+    "subtotal_amount": "100.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

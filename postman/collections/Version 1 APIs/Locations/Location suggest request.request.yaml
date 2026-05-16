@@ -1,0 +1,29 @@
+$kind: http-request
+name: Location suggest request
+url: "{{base_url}}/api/v1/locations/suggest/"
+method: GET
+description: |-
+  Suggest locations for authenticated users.
+
+  Auth: IsAuthenticated.
+  Query params: q (required), session_token (optional), latitude (optional), longitude (optional), limit (1-10, default: 5).
+
+  Success response: `200 OK`
+
+  ```json
+  [
+    {
+      "provider": "google_places",
+      "provider_place_id": "ChI...",
+      "label": "123 Main St, New York, NY",
+      "main_text": "123 Main St",
+      "secondary_text": "New York, NY, USA"
+    }
+  ]
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

@@ -1,0 +1,34 @@
+$kind: http-request
+name: Seller service area options request
+url: "{{base_url}}/api/v1/sellers/me/service-area-options/"
+method: GET
+description: |-
+  Fetch available service area options for the seller (excludes already added areas).
+
+  Auth: IsAuthenticated + Seller role required.
+  Query params: search (optional).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": "uuid",
+        "name": "string",
+        "address_text": "string",
+        "latitude": 40.7128,
+        "longitude": -74.0060
+      }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

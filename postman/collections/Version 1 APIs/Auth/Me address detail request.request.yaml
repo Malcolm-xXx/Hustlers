@@ -1,0 +1,34 @@
+$kind: http-request
+name: Me address detail request
+url: "{{base_url}}/api/v1/auth/me/addresses/{{address_id}}/"
+method: GET
+order: 1776961561565
+description: |-
+  Fetch a single saved address.
+
+  Auth: IsAuthenticated
+
+  Path variable:
+  - `address_id`: UUID of the saved address
+
+  Success response: `200 OK`
+
+  ```json
+  {
+  "id": "uuid",
+   "location": {
+   "id": "uuid",
+   "name": "string",
+   "address_text": "string",
+   "coordinates": { "latitude": number, "longitude": number }
+   },
+  "is_default": boolean,
+  "created_at": "datetime"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

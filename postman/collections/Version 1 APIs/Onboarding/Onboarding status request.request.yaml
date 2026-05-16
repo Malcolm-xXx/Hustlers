@@ -1,0 +1,26 @@
+$kind: http-request
+name: Onboarding status request
+url: "{{base_url}}/api/v1/onboarding/status/"
+method: GET
+description: |-
+  Fetch the current user's onboarding status.
+
+  Auth: IsAuthenticated.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "is_onboarded": false,
+    "role": "buyer",
+    "default_delivery_address": null,
+    "onboarding_data": {},
+     "next_step": "complete_onboarding"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

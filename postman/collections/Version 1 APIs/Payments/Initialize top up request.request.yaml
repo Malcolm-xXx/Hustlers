@@ -1,0 +1,37 @@
+$kind: http-request
+name: Initialize top up request
+url: "{{base_url}}/api/v1/payments/wallet/top-ups/initialize/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "amount": {{amount}},
+      "payment_method": "{{payment_method}}",
+      "saved_payment_method_id": "{{saved_payment_method_id}}",
+      "callback_url": "{{callback_url}}"
+    }
+description: |-
+  Initialize a wallet top-up.
+
+  Auth: IsAuthenticated.
+   Body: amount, payment_method (card | bank_transfer | wallet), saved_payment_method_id (optional), callback_url (optional).
+
+  Success response: `201 Created`
+
+  ```json
+  {
+    "id": "uuid",
+    "payment_method": "card",
+    "status": "pending",
+    "amount": "100.00",
+    "reference": "pay_uuid",
+    "authorization_url": "https://payment-provider.com/pay/pay_uuid"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

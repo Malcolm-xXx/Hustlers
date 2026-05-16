@@ -1,0 +1,29 @@
+$kind: http-request
+name: Mark all notifications read request
+url: "{{base_url}}/api/v1/notifications/mark-all-read/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "category": "{{category}}"
+    }
+description: |-
+  Mark notifications as read in bulk.
+
+  Auth: IsAuthenticated.
+  Body: category.
+
+   Success response: `200 OK`
+
+  ```json
+   {
+     "detail": "Notifications marked as read."
+   }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

@@ -1,0 +1,4 @@
+$kind: collection
+name: Messaging
+description: Conversation and message endpoints with read, mute, resolve, and clear workflows.
+order: 2716643152101375

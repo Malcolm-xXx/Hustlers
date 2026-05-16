@@ -1,0 +1,30 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/v1/auth/register/"
+  method: POST
+  body:
+    type: json
+    content: |-
+      {
+        "full_name": "{{full_name}}",
+        "phone_number": "{{phone_number}}",
+        "email": "{{email}}",
+        "password": "{{password}}",
+        "confirm_password": "{{confirm_password}}"
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  body:
+    type: json
+    content: |-
+      {
+        "id": "uuid",
+        "full_name": "string",
+        "email": "email",
+        "role": "string",
+        "is_onboarded": false,
+        "detail": "Verification OTP sent to email.",
+        "requires_email_verification": true
+      }
+order: 1776968815347

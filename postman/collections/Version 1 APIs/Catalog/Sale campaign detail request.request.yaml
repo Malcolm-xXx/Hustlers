@@ -1,0 +1,31 @@
+$kind: http-request
+name: Sale campaign detail request
+url: "{{base_url}}/api/v1/catalog/sale-campaigns/{{campaign_id}}/"
+method: GET
+description: |-
+  Fetch a sale campaign by ID.
+
+  Auth: IsAuthenticated + Seller role required (must own the campaign).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "name": "string",
+    "campaign_type": "single_item",
+    "discount_percent": "10.00",
+    "starts_at": "2024-01-15T00:00:00Z",
+    "ends_at": "2024-01-22T00:00:00Z",
+    "status": "active",
+    "items": [
+      { "product_id": "uuid", "discounted_price": "90.00" }
+    ]
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

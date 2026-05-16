@@ -1,0 +1,64 @@
+$kind: http-request
+name: Orders checkout request
+url: "{{base_url}}/api/v1/orders/checkout/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "source": "{{source}}",
+      "cart_id": "{{cart_id}}",
+      "hustle_list_id": "{{hustle_list_id}}",
+      "payment_method": "{{payment_method}}",
+      "saved_payment_method_id": "{{saved_payment_method_id}}",
+      "delivery_address_id": "{{delivery_address_id}}",
+      "special_instructions": "{{special_instructions}}",
+      "save_payment_method": {{save_payment_method}}
+    }
+description: |-
+  Checkout an order source.
+
+  Auth: IsAuthenticated + Buyer role required.
+  Body: source, cart_id, hustle_list_id, payment_method, saved_payment_method_id, delivery_address_id, special_instructions, save_payment_method.
+
+   Success response: `201 Created`
+
+  ```json
+  {
+    "orders": [
+      {
+        "id": "uuid",
+        "order_number": "ORD-2024-001",
+        "status": "PENDING",
+        "payment_status": "PENDING",
+        "buyer": { "id": "uuid", "full_name": "string", "email": "email" },
+        "seller": { "id": "uuid", "store_name": "string", "location": "string", "rating": "4.50" },
+        "eta_minutes": null,
+        "delivery_address_text": "123 Main St",
+        "items_count": 3,
+        "total_amount": "150.00",
+        "created_at": "2024-01-15T10:30:00Z"
+      }
+    ],
+    "payment": {
+      "id": "uuid",
+      "payment_method": "wallet",
+      "status": "PENDING",
+      "amount": "150.00",
+      "reference": "pay_uuid",
+      "authorization_url": "https://..."
+    },
+    "wallet": {
+      "wallet_id": "uuid",
+      "currency_code": "KES",
+      "available_balance": "100.00",
+      "pending_balance": "50.00"
+    }
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

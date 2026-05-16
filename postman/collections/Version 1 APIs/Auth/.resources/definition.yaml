@@ -1,0 +1,4 @@
+$kind: collection
+name: Auth
+description: Authentication and account management for registration, login, tokens, passwords, profile, and saved addresses.
+order: 4129960344158207

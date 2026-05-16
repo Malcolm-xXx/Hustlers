@@ -1,0 +1,26 @@
+$kind: http-request
+name: Empty cart request
+url: "{{base_url}}/api/v1/carts/current/empty/"
+method: POST
+description: |-
+  Empty the current cart.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "status": "active",
+    "items": [],
+    "seller_count": 0,
+    "subtotal_amount": "0.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

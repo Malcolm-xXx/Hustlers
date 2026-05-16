@@ -1,0 +1,16 @@
+$kind: http-request
+name: Remove favorite seller request
+url: "{{base_url}}/api/v1/discovery/favorites/sellers/{{seller_id}}/"
+method: DELETE
+description: |-
+  Remove a seller from favorites.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `204 No Content`
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

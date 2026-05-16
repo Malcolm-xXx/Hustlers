@@ -1,0 +1,67 @@
+$kind: http-request
+name: Google login request
+url: "{{base_url}}/api/v1/auth/google/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "id_token": "{{googleIdToken}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      try {
+        var data = JSON.parse(responseBody);
+        if (data.access) {
+          pm.collectionVariables.set("access_token", data.access);
+        }
+        if (data.refresh) {
+          pm.collectionVariables.set("refresh_token", data.refresh);
+        }
+      } catch (e) {
+        console.log("Failed to parse response: " + e);
+      }
+order: 1776961561556
+description: |-
+  Log in with a Google ID token.
+
+  Auth: Public
+
+  Request body:
+  ```json
+  {
+  "id_token": "google id token string"
+  }
+  ```
+
+  Success response: `200 OK`
+
+  ```json
+  {
+  "access": "jwt token",
+  "refresh": "jwt token",
+  "user": {
+  "id": "uuid",
+  "full_name": "string",
+  "email": "email",
+  "role": "string",
+  "is_onboarded": boolean
+  },
+  "is_new_user": boolean
+  }
+  ```
+
+  Error response: `400 Bad Request`
+
+  ```json
+  {
+  "detail": "Google authentication failed."
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

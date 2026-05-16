@@ -1,0 +1,16 @@
+$kind: http-request
+name: Delete saved cart request
+url: "{{base_url}}/api/v1/carts/saved/{{cart_id}}/"
+method: DELETE
+description: |-
+  Delete a saved cart.
+
+  Auth: IsAuthenticated + Buyer role required.
+
+  Success response: `204 No Content`
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

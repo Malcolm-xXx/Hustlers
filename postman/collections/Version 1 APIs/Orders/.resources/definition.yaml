@@ -1,0 +1,4 @@
+$kind: collection
+name: Orders
+description: Checkout and order lifecycle endpoints for buyers and sellers, including complaints, cancellations, alternatives, and reorders.
+order: 2227573311406079

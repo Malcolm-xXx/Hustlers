@@ -1,0 +1,38 @@
+$kind: http-request
+name: Product detail request
+url: "{{base_url}}/api/v1/catalog/products/{{product_id}}/"
+method: GET
+description: |-
+  Fetch a product by ID.
+
+  Auth: IsAuthenticated + Buyer or Seller role required.
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "id": "uuid",
+    "name": "string",
+    "unit_label": "string",
+    "seller": { "id": "uuid", "store_name": "string" },
+    "base_price": "100.00",
+    "discounted_price": null,
+    "is_on_sale": false,
+    "is_low_stock": false,
+    "image_url": "url",
+    "category": "string",
+    "description": "string",
+    "shelf_life_text": "string",
+    "stock_status": "in_stock",
+    "availability_status": "available",
+    "tags": ["string"],
+    "seller_rating": "4.50",
+    "seller_review_count": 10
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

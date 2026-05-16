@@ -1,0 +1,25 @@
+$kind: http-request
+name: Buyer spending analytics request
+url: "{{base_url}}/api/v1/analytics/buyer/spending/"
+method: GET
+description: |-
+  Fetch buyer spending analytics.
+
+  Auth: IsAuthenticated + Buyer role required.
+  Query params: range (today | week | month, default: month).
+
+  Success response: `200 OK`
+
+  ```json
+  {
+    "total_spent": "1500.00",
+    "total_orders": 15,
+    "average_order_price": "100.00"
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

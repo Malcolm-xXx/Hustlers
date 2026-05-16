@@ -1,0 +1,50 @@
+$kind: http-request
+url: "{{base_url}}/api/v1/auth/register/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "full_name": "{{full_name}}",
+      "phone_number": "{{phone_number}}",
+      "email": "{{email}}",
+      "password": "{{password}}",
+      "confirm_password": "{{confirm_password}}"
+    }
+examples: .resources/Register request.resources/examples
+order: 1776961561550
+description: |-
+  Register a new user.
+
+  Auth: Public
+
+  Request body:
+  ```json
+  {
+  "full_name": "string (max 255)",
+  "phone_number": "string (max 20)",
+  "email": "email",
+  "password": "string (min 8)",
+  "confirm_password": "string (min 8)"
+  }
+  ```
+
+   Success response: `201 Created`
+
+  ```json
+  {
+  "id": "uuid",
+  "full_name": "string",
+  "email": "email",
+  "role": "string",
+  "is_onboarded": false,
+  "detail": "Verification OTP sent to email.",
+  "requires_email_verification": true
+  }
+  ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist

@@ -1,0 +1,59 @@
+$kind: http-request
+name: Login request
+url: "{{base_url}}/api/v1/auth/login/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "email": "{{email}}",
+      "password": "{{password}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      try {
+        var data = JSON.parse(responseBody);
+        if (data.access) {
+          pm.collectionVariables.set("access_token", data.access);
+        }
+        if (data.refresh) {
+          pm.collectionVariables.set("refresh_token", data.refresh);
+        }
+      } catch (e) {
+        console.log("Failed to parse response: " + e);
+      }
+order: 1776961561553
+description: |-
+  Log in with email and password.
+
+  Auth: Public
+
+  Request body:
+  ```json
+  {
+  "email": "email",
+  "password": "string"
+  }
+  ```
+
+  Success response: `200 OK`
+
+  ```json
+  {
+  "access": "jwt token",
+  "refresh": "jwt token",
+  "user": {
+  "id": "uuid",
+  "full_name": "string",
+  "email": "email",
+  "role": "string",
+  "is_onboarded": boolean
+  }
+  }
+  ```
+
+  Errors:
+  - `401 Unauthorized`: `{"detail": "Invalid credentials."}`
+  - `403 Forbidden`: `{"detail": "This account is not allowed to login."}`
+  - `403 Forbidden`: `{"detail": "Email not verified. Please verify your email first."}`

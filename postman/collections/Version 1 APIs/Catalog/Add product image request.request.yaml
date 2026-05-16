@@ -1,0 +1,36 @@
+$kind: http-request
+name: Add product image request
+url: "{{base_url}}/api/v1/catalog/products/{{product_id}}/images/"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: image
+      src: "{{image}}"
+    - type: text
+      key: is_primary
+      value: "{{is_primary}}"
+    - type: text
+      key: sort_order
+      value: "{{sort_order}}"
+description: |-
+  Add an image to a product.
+
+  Auth: IsAuthenticated + Seller role required (must own the product).
+  Body: multipart/form-data with `image` (file), `is_primary` (optional), and `sort_order` (optional).
+
+  Success response: `201 Created`
+
+   ```json
+   {
+     "id": "uuid",
+     "image_url": "url"
+   }
+   ```
+
+  Common errors:
+  - `400 Bad Request`: validation error response
+  - `401 Unauthorized`: authentication required
+  - `403 Forbidden`: permission denied
+  - `404 Not Found`: resource does not exist
